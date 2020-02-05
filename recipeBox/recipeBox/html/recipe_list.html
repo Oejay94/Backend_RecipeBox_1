@@ -1,0 +1,23 @@
+<!-- with ginga2, everything that is a templated item
+is displayed inside this syntax: /{/% /%}/.  Can do alot
+of psuedo-code. not py, not django, just a language django can interpret -->
+<body>
+    <h2>Recipes Available...</h2>
+
+    <ul>
+        <!-- !!HERE WE HAVE TO GIVE DATA TO THE VIEWS.PY FILE SO
+        DJANGO KNOWS WHERE TO GET DATA FROM -->
+        {% for item in data%}
+
+            <li>
+                <a href="/recipes/{{ item.id }}">
+                    {{ item.title }}
+                </a>
+                -- by
+                <a href="/authors/{{ item.author.id }}">
+                    {{ item.author }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
