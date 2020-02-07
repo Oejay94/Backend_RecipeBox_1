@@ -6,7 +6,7 @@ from recipeBox.models import Author
 
 class Add_Author(forms.Form):
     name = forms.CharField(label="Author Name", max_length=100)
-    bio = forms.CharField(label="Bio", max_length=2000)
+    bio = forms.CharField(widget=forms.Textarea)
 
 class Add_Recipe(forms.Form):
     title = forms.CharField(label="Recipe Title", max_length=2000)
