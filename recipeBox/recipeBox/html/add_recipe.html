@@ -1,0 +1,7 @@
+<a href="/"><button>Go Back</button></a>
+
+<form action="/add_recipe" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
