@@ -2,7 +2,7 @@
 name = "RecipeBox"
 version = "0.1.0"
 description = ""
-authors = ["Tamoya Hopkins <tamoya@250ok.com>"]
+authors = ["Tamoya Hopkins <tamoyashopkins@.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
