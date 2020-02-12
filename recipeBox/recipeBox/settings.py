@@ -40,6 +40,10 @@ DEBUG = True
 #---added the hostname that is acceptable ie example.com
 ALLOWED_HOSTS = ['*']
 
+# -- added for User Auth
+LOGIN_URL = '/login'
+LOGOUT_REDIRECT_URL = '/'
+
 
 # Application definition
 #---have to !!ADD THE NAME OF THE PROJECT FOLDER AT THE BOTTOM OF INSTALLED APPS LIST
