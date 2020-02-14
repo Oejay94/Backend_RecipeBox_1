@@ -15,3 +15,8 @@ class Add_Recipe(forms.Form):
     instructions = forms.CharField(label="Instructions", max_length=2000)
     # talk to db to get a query set (generates a dropdown of all objects)
     author = forms.ModelChoiceField(queryset=Author.objects.all())
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100)
+

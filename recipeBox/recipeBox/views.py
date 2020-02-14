@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from recipeBox.models import Recipe, Author
 
-from recipeBox.forms import Add_Recipe, Add_Author
+from recipeBox.forms import Add_Recipe, Add_Author, LoginForm
 # --can write function based view or classed based view.  But class based lets us do more w/ request.
 # -- Pass it around alot, etc.  Using a function based view here bc its easier
 
@@ -58,6 +58,7 @@ def add_recipe_view(request):
 
 @login_required()
 def add_author_view(request):
+    # breakpoint()
     if request.method == 'POST':
         form = Add_Author(request.POST)
         if form.is_valid():
@@ -75,35 +76,37 @@ def sign_up_view(request):
     # that there is a relationship btw user and author
     # onetoone relationship is like a foreign key, but only works one time.
     form = None
-    if request.method == POST:
+    if request.method == "POST":
         form = SignupForm(request.POST)
-    if form.is_valid():
-        data = form.cleaned_data
-        user = User.objects.create_user(
-            data['username'], data['email'], data['password']
-        )
-        login(request, user)
-        # extending author model to include user property
-        Author.objects.create(
-            name = data['name'],
-            user = user
-        )
-        return HttpResponseRedirect(reverse('home'))
+        if form.is_valid():
+            data = form.cleaned_data
+            user = User.objects.create_user(
+                data['username'], data['email'], data['password']
+            )
+            login(request, user)
+            # extending author model to include user property
+            Author.objects.create(
+                name = data['name'],
+                user = user
+            )
+            return HttpResponseRedirect(reverse('home'))
     else:
         form = SignupForm()
     return render(request, 'generic_form.html', {'form': form} )
 
 
 def login_view(request):
-    form = None
-    if form.is_valid():
-        data = form.cleaned_data
-        user = authenticate(username=data['username'], password=data['password'])
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect(request.GET.get('next', '/'))
-        else:
-            form = LoginForm
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = authenticate(username=data['username'], password=data['password'])
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(request.GET.get('next', '/'))
+            else:
+                pass
+    form = LoginForm()
     return render(request, 'generic_form.html', {'form': form} )
 
 
