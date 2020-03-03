@@ -41,7 +41,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # -- added for User Auth
-LOGIN_URL = '/login'
+LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
 
 

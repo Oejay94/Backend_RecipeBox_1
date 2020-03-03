@@ -6,12 +6,19 @@
 <p>{{ author.bio }}</p>
 
 <h3>Recipes by {{ author.name }}:</h3>
-    <ul>
-        {% for item in recipes %}
-        <li>
-            <a href="/recipes/{{ item.id }}">
-                {{ item.title }}
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+<ul>
+    {% for item in recipes %}
+    <li>
+        <a href="/recipes/{{ item.id }}">
+            {{ item.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h4>Favorited by {{ author.name }}</h4>
+{% for fave in faves %}
+<ul>
+    <li><a href="/recipes/{{fave.id}}">{{fave.title}}</a></li>
+</ul>
+{% endfor %}

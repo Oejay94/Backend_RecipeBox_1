@@ -31,7 +31,9 @@ class Author(models.Model):
     bio = models.TextField(max_length=2000)
     # for every instance of author we create,
     # there will be a user that will exist
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    favorites = models.ManyToManyField('Recipe', related_name='recipe_favorites', blank=True)
+    
     def __str__(self):
         return self.name
 
