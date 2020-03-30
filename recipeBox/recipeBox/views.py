@@ -120,7 +120,7 @@ def login_view(request):
 @login_required()
 def favorites(request, id):
     favorite = Recipe.objects.get(id=id)
-    user = Author.objects.get(id=id)
+    user = Author.objects.get(name=request.user)
     faves = user.favorites.add(favorite)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
